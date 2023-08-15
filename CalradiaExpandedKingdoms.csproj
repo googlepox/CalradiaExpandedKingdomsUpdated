@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\CalradiaExpandedKingdoms\bin\Win64_Shipping_Client\CalradiaExpandedKingdoms.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B97D72FE-E6F2-4015-A11E-1766119308E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>CalradiaExpandedKingdoms</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>CalradiaExpandedKingdoms</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="SandBox">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.dll</HintPath>
+    </Reference>
+    <Reference Include="SandBox.View">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.View.dll</HintPath>
+    </Reference>
+    <Reference Include="SandBox.ViewModelCollection">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.ViewModelCollection.dll</HintPath>
+    </Reference>
+    <Reference Include="StoryMode">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TaleWorlds.CampaignSystem">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.CampaignSystem.ViewModelCollection">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.ViewModelCollection.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.Core">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.DotNet">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.DotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.Engine">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.Engine.GauntletUI">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Engine.GauntletUI.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.GauntletUI">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.GauntletUI.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.Library">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Library.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.Localization">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.ModuleManager">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.ModuleManager.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.GauntletUI.Widgets">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.GauntletUI.Widgets.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.View">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.View.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.ObjectSystem">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.SaveSystem">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.SaveSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.ScreenSystem">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.ScreenSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.TwoDimension">
+      <HintPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.TwoDimension.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArmyComposition.cs" />
+    <Compile Include="CampaignBehaviors\CustomSaveDefiner.cs" />
+    <Compile Include="CampaignBehaviors\CEKCampaignBehavior.cs" />
+    <Compile Include="RecruitData.cs" />
+    <Compile Include="RecruitManager.cs" />
+    <Compile Include="EquipBannerMissionBehavior.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="CampaignBehaviors\RuinType.cs" />
+    <Compile Include="Ruin.cs" />
+    <Compile Include="CampaignBehaviors\RuinCampaignBehavior.cs" />
+    <Compile Include="1Ruin.cs" />
+    <Compile Include="2Ruin.cs" />
+    <Compile Include="3Ruin.cs" />
+    <Compile Include="1Main.cs" />
+    <Compile Include="Helpers.cs" />
+    <Compile Include="Feats.cs" />
+    <Compile Include="1Feats.cs" />
+    <Compile Include="CampaignBehaviors\AriorumCampaignBehavior.cs" />
+    <Compile Include="CampaignBehaviors\1AriorumCampaignBehavior.cs" />
+    <Compile Include="CampaignBehaviors\2AriorumCampaignBehavior.cs" />
+    <Compile Include="CampaignBehaviors\3AriorumCampaignBehavior.cs" />
+    <Compile Include="2Main.cs" />
+    <Compile Include="3Main.cs" />
+    <Compile Include="4Main.cs" />
+    <Compile Include="5Main.cs" />
+    <Compile Include="6Main.cs" />
+    <Compile Include="7Main.cs" />
+    <Compile Include="8Main.cs" />
+    <Compile Include="9Main.cs" />
+    <Compile Include="10Main.cs" />
+    <Compile Include="CampaignBehaviors\4AriorumCampaignBehavior.cs" />
+    <Compile Include="CampaignBehaviors\DocksCampaignBehavior.cs" />
+    <Compile Include="Quests\FindItemInRuinQuest.cs" />
+    <Compile Include="CEKModels.cs" />
+    <Compile Include="1CEKModels.cs" />
+    <Compile Include="2CEKModels.cs" />
+    <Compile Include="3CEKModels.cs" />
+    <Compile Include="4CEKModels.cs" />
+    <Compile Include="5CEKModels.cs" />
+    <Compile Include="6CEKModels.cs" />
+    <Compile Include="7CEKModels.cs" />
+    <Compile Include="8CEKModels.cs" />
+    <Compile Include="9CEKModels.cs" />
+    <Compile Include="10CEKModels.cs" />
+    <Compile Include="11CEKModels.cs" />
+    <Compile Include="12CEKModels.cs" />
+    <Compile Include="13CEKModels.cs" />
+    <Compile Include="14CEKModels.cs" />
+    <Compile Include="15CEKModels.cs" />
+    <Compile Include="16CEKModels.cs" />
+    <Compile Include="17CEKModels.cs" />
+    <Compile Include="18CEKModels.cs" />
+    <Compile Include="19CEKModels.cs" />
+    <Compile Include="20CEKModels.cs" />
+    <Compile Include="CEKEvents.cs" />
+    <Compile Include="CEKCharacterCreation\CEKCharacterCreationContent.cs" />
+    <Compile Include="CEKCharacterCreation\CEKGameManager.cs" />
+    <Compile Include="CEKCharacterCreation\Patches.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
