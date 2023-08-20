@@ -11,39 +11,47 @@ using TaleWorlds.ObjectSystem;
 
 namespace CalradiaExpandedKingdoms
 {
-  internal class EquipBannerMissionBehavior : MissionLogic
-  {
-    private List<Agent> spawnedAgents = new List<Agent>();
-
-    public override void OnPreMissionTick(float dt)
+    internal class EquipBannerMissionBehavior : MissionLogic
     {
-      foreach (Agent spawnedAgent in this.spawnedAgents)
-      {
-        if (spawnedAgent.Equipment != null && !spawnedAgent.Equipment.HasRangedWeapon(WeaponClass.Arrow) && !spawnedAgent.Equipment.HasRangedWeapon(WeaponClass.Bolt) && !spawnedAgent.Equipment.HasRangedWeapon(WeaponClass.TwoHandedSword) && !spawnedAgent.Equipment.HasRangedWeapon(WeaponClass.TwoHandedPolearm) && !spawnedAgent.Equipment.HasRangedWeapon(WeaponClass.TwoHandedMace) && !spawnedAgent.Equipment.HasRangedWeapon(WeaponClass.TwoHandedAxe) && !spawnedAgent.Equipment.HasShield() && !spawnedAgent.HasMount)
-          this.EquipBanner(spawnedAgent, spawnedAgent.Origin.Banner);
-      }
-      this.spawnedAgents.Clear();
-    }
+        private List<Agent> spawnedAgents = new List<Agent>();
 
-    public override void OnAgentBuild(Agent agent, Banner banner)
-    {
-      if (!agent.IsHuman || agent.IsHero || agent.Origin.Troop == null || agent.Origin.Troop.Culture == null || agent.Origin.Troop.Culture.IsBandit)
-        return;
-      this.spawnedAgents.Add(agent);
-    }
+        public override void OnPreMissionTick(float dt)
+        {
+            foreach (Agent spawnedAgent in this.spawnedAgents)
+            {
+                if (spawnedAgent.Equipment != null && !spawnedAgent.Equipment.HasRangedWeapon(WeaponClass.Arrow) && !spawnedAgent.Equipment.HasRangedWeapon(WeaponClass.Bolt) && !spawnedAgent.Equipment.HasRangedWeapon(WeaponClass.TwoHandedSword) && !spawnedAgent.Equipment.HasRangedWeapon(WeaponClass.TwoHandedPolearm) && !spawnedAgent.Equipment.HasRangedWeapon(WeaponClass.TwoHandedMace) && !spawnedAgent.Equipment.HasRangedWeapon(WeaponClass.TwoHandedAxe) && !spawnedAgent.Equipment.HasShield() && !spawnedAgent.HasMount)
+                {
+                    this.EquipBanner(spawnedAgent, spawnedAgent.Origin.Banner);
+                }
+            }
+            this.spawnedAgents.Clear();
+        }
 
-    public override void OnAgentFleeing(Agent affectedAgent)
-    {
-      base.OnAgentFleeing(affectedAgent);
-      if (affectedAgent.Equipment == null || affectedAgent.Equipment[EquipmentIndex.ExtraWeaponSlot].IsEmpty)
-        return;
-      affectedAgent.DropItem(EquipmentIndex.ExtraWeaponSlot);
-    }
+        public override void OnAgentBuild(Agent agent, Banner banner)
+        {
+            if (!agent.IsHuman || agent.IsHero || agent.Origin.Troop == null || agent.Origin.Troop.Culture == null || agent.Origin.Troop.Culture.IsBandit)
+            {
+                return;
+            }
 
-    public void EquipBanner(Agent agent, Banner banner)
-    {
-      MissionWeapon weapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>("campaign_banner_small"), (ItemModifier) null, banner);
-      agent.EquipWeaponToExtraSlotAndWield(ref weapon);
+            this.spawnedAgents.Add(agent);
+        }
+
+        public override void OnAgentFleeing(Agent affectedAgent)
+        {
+            base.OnAgentFleeing(affectedAgent);
+            if (affectedAgent.Equipment == null || affectedAgent.Equipment[EquipmentIndex.ExtraWeaponSlot].IsEmpty)
+            {
+                return;
+            }
+
+            affectedAgent.DropItem(EquipmentIndex.ExtraWeaponSlot);
+        }
+
+        public void EquipBanner(Agent agent, Banner banner)
+        {
+            MissionWeapon weapon = new MissionWeapon(MBObjectManager.Instance.GetObject<ItemObject>("campaign_banner_small"), (ItemModifier)null, banner);
+            agent.EquipWeaponToExtraSlotAndWield(ref weapon);
+        }
     }
-  }
 }

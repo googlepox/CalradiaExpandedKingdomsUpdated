@@ -14,30 +14,33 @@ using TaleWorlds.SaveSystem.Load;
 
 namespace CalradiaExpandedKingdoms.CEKCharacterCreation
 {
-  internal class CEKGameManager : SandBoxGameManager
-  {
-    public CEKGameManager()
+    internal class CEKGameManager : SandBoxGameManager
     {
-    }
+        public CEKGameManager()
+        {
+        }
 
-    public CEKGameManager(LoadResult loadedGameResult)
-      : base(loadedGameResult)
-    {
-    }
+        public CEKGameManager(LoadResult loadedGameResult)
+          : base(loadedGameResult)
+        {
+        }
 
-    public override void OnLoadFinished()
-    {
-      VideoPlaybackState state = Game.Current.GameStateManager.CreateState<VideoPlaybackState>();
-      string str = ModuleHelper.GetModuleFullPath("SandBox") + "Videos/CampaignIntro/";
-      string subtitleFileBasePath = str + "campaign_intro";
-      string videoPath = str + "campaign_intro.ivf";
-      string audioPath = str + "campaign_intro.ogg";
-      state.SetStartingParameters(videoPath, audioPath, subtitleFileBasePath);
-      state.SetOnVideoFinisedDelegate(new Action(this.LaunchSandboxCharacterCreation));
-      Game.Current.GameStateManager.CleanAndPushState((GameState) state);
-      this.IsLoaded = true;
-    }
+        public override void OnLoadFinished()
+        {
+            VideoPlaybackState state = Game.Current.GameStateManager.CreateState<VideoPlaybackState>();
+            string str = ModuleHelper.GetModuleFullPath("SandBox") + "Videos/CampaignIntro/";
+            string subtitleFileBasePath = str + "campaign_intro";
+            string videoPath = str + "campaign_intro.ivf";
+            string audioPath = str + "campaign_intro.ogg";
+            state.SetStartingParameters(videoPath, audioPath, subtitleFileBasePath);
+            state.SetOnVideoFinisedDelegate(new Action(this.LaunchSandboxCharacterCreation));
+            Game.Current.GameStateManager.CleanAndPushState((GameState)state);
+            this.IsLoaded = true;
+        }
 
-    private void LaunchSandboxCharacterCreation() => Game.Current.GameStateManager.CleanAndPushState((GameState) Game.Current.GameStateManager.CreateState<CharacterCreationState>((object) new CEKCharacterCreationContent()));
-  }
+        private void LaunchSandboxCharacterCreation()
+        {
+            Game.Current.GameStateManager.CleanAndPushState((GameState)Game.Current.GameStateManager.CreateState<CharacterCreationState>((object)new CEKCharacterCreationContent()));
+        }
+    }
 }

@@ -14,32 +14,43 @@ using TaleWorlds.Library;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKCombatXpModel : DefaultCombatXpModel
-  {
-    public override void GetXpFromHit(
-      CharacterObject attackerTroop,
-      CharacterObject captain,
-      CharacterObject attackedTroop,
-      PartyBase party,
-      int damage,
-      bool isFatal,
-      CombatXpModel.MissionTypeEnum missionType,
-      out int xpAmount)
+    public class CEKCombatXpModel : DefaultCombatXpModel
     {
-      base.GetXpFromHit(attackerTroop, captain, attackedTroop, party, damage, isFatal, missionType, out xpAmount);
-      ExplainedNumber explainedNumber = new ExplainedNumber((float) xpAmount);
-      if (captain != null && captain.IsHero)
-      {
-        if (captain.Culture.HasFeat(CEKFeats.LyrionPositiveFeatTwo))
-          explainedNumber.AddFactor(CEKFeats.LyrionPositiveFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
-        if (captain.Culture.HasFeat(CEKFeats.PaleicianPositiveFeatOne))
-          explainedNumber.AddFactor(CEKFeats.PaleicianPositiveFeatOne.EffectBonus, GameTexts.FindText("str_culture"));
-        if (captain.Culture.HasFeat(CEKFeats.RhodokNegativeFeatTwo))
-          explainedNumber.AddFactor(CEKFeats.RhodokNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
-        if (captain.Culture.HasFeat(CEKFeats.VlandianPositiveFeatThree) && attackedTroop.IsMounted)
-          explainedNumber.AddFactor(CEKFeats.VlandianPositiveFeatThree.EffectBonus, GameTexts.FindText("str_culture"));
-      }
-      xpAmount = MathF.Round(explainedNumber.ResultNumber);
+        public override void GetXpFromHit(
+          CharacterObject attackerTroop,
+          CharacterObject captain,
+          CharacterObject attackedTroop,
+          PartyBase party,
+          int damage,
+          bool isFatal,
+          CombatXpModel.MissionTypeEnum missionType,
+          out int xpAmount)
+        {
+            base.GetXpFromHit(attackerTroop, captain, attackedTroop, party, damage, isFatal, missionType, out xpAmount);
+            ExplainedNumber explainedNumber = new ExplainedNumber((float)xpAmount);
+            if (captain != null && captain.IsHero)
+            {
+                if (captain.Culture.HasFeat(CEKFeats.LyrionPositiveFeatTwo))
+                {
+                    explainedNumber.AddFactor(CEKFeats.LyrionPositiveFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
+                }
+
+                if (captain.Culture.HasFeat(CEKFeats.PaleicianPositiveFeatOne))
+                {
+                    explainedNumber.AddFactor(CEKFeats.PaleicianPositiveFeatOne.EffectBonus, GameTexts.FindText("str_culture"));
+                }
+
+                if (captain.Culture.HasFeat(CEKFeats.RhodokNegativeFeatTwo))
+                {
+                    explainedNumber.AddFactor(CEKFeats.RhodokNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
+                }
+
+                if (captain.Culture.HasFeat(CEKFeats.VlandianPositiveFeatThree) && attackedTroop.IsMounted)
+                {
+                    explainedNumber.AddFactor(CEKFeats.VlandianPositiveFeatThree.EffectBonus, GameTexts.FindText("str_culture"));
+                }
+            }
+            xpAmount = MathF.Round(explainedNumber.ResultNumber);
+        }
     }
-  }
 }

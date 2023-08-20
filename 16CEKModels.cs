@@ -11,23 +11,34 @@ using TaleWorlds.MountAndBlade;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKBattleMoraleModel : SandboxBattleMoraleModel
-  {
-    public override float GetEffectiveInitialMorale(Agent agent, float baseMorale)
+    public class CEKBattleMoraleModel : SandboxBattleMoraleModel
     {
-      float effectiveInitialMorale = base.GetEffectiveInitialMorale(agent, baseMorale);
-      if (agent != null && agent.Character != null)
-      {
-        if (agent.Character.Culture == CEKHelpers.GetCultureObjectByID("rebkhu"))
-          effectiveInitialMorale *= 1f + CEKFeats.KhergitNegativeFeatOne.EffectBonus;
-        if (agent.Character.Culture == CEKHelpers.GetCultureObjectByID("republic"))
-          effectiveInitialMorale *= 1f + CEKFeats.RepublicPositiveFeatThree.EffectBonus;
-        if (agent.Character.Culture == CEKHelpers.GetCultureObjectByID("battania"))
-          effectiveInitialMorale *= 1f + CEKFeats.BattaniaPositiveFeatThree.EffectBonus;
-        if (agent.Character.Culture == CEKHelpers.GetCultureObjectByID("rhodok"))
-          effectiveInitialMorale *= 1f + CEKFeats.BattaniaPositiveFeatThree.EffectBonus;
-      }
-      return effectiveInitialMorale;
+        public override float GetEffectiveInitialMorale(Agent agent, float baseMorale)
+        {
+            float effectiveInitialMorale = base.GetEffectiveInitialMorale(agent, baseMorale);
+            if (agent != null && agent.Character != null)
+            {
+                if (agent.Character.Culture == CEKHelpers.GetCultureObjectByID("rebkhu"))
+                {
+                    effectiveInitialMorale *= 1f + CEKFeats.KhergitNegativeFeatOne.EffectBonus;
+                }
+
+                if (agent.Character.Culture == CEKHelpers.GetCultureObjectByID("republic"))
+                {
+                    effectiveInitialMorale *= 1f + CEKFeats.RepublicPositiveFeatThree.EffectBonus;
+                }
+
+                if (agent.Character.Culture == CEKHelpers.GetCultureObjectByID("battania"))
+                {
+                    effectiveInitialMorale *= 1f + CEKFeats.BattaniaPositiveFeatThree.EffectBonus;
+                }
+
+                if (agent.Character.Culture == CEKHelpers.GetCultureObjectByID("rhodok"))
+                {
+                    effectiveInitialMorale *= 1f + CEKFeats.BattaniaPositiveFeatThree.EffectBonus;
+                }
+            }
+            return effectiveInitialMorale;
+        }
     }
-  }
 }

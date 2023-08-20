@@ -11,24 +11,38 @@ using TaleWorlds.Localization;
 
 namespace CalradiaExpandedKingdoms.Patches
 {
-  [HarmonyPatch(typeof (NameGenerator), "GenerateClanName")]
-  internal class GenerateClanNamePatch
-  {
-    public static void Postfix(
-      CultureObject culture,
-      Settlement clanOriginSettlement,
-      ref TextObject __result)
+    [HarmonyPatch(typeof(NameGenerator), "GenerateClanName")]
+    internal class GenerateClanNamePatch
     {
-      if (clanOriginSettlement == null)
-        return;
-      if (culture.StringId.ToLower() == "rhodok")
-        __result.SetTextVariable("ORIGIN_SETTLEMENT", clanOriginSettlement.Name);
-      if (culture.StringId.ToLower() == "apolssalian")
-        __result.SetTextVariable("ORIGIN_SETTLEMENT", clanOriginSettlement.Name);
-      if (culture.StringId.ToLower() == "lyrion")
-        __result.SetTextVariable("ORIGIN_SETTLEMENT", clanOriginSettlement.Name);
-      if (culture.StringId.ToLower() == "paleician")
-        __result.SetTextVariable("ORIGIN_SETTLEMENT", clanOriginSettlement.Name);
+        public static void Postfix(
+          CultureObject culture,
+          Settlement clanOriginSettlement,
+          ref TextObject __result)
+        {
+            if (clanOriginSettlement == null)
+            {
+                return;
+            }
+
+            if (culture.StringId.ToLower() == "rhodok")
+            {
+                __result.SetTextVariable("ORIGIN_SETTLEMENT", clanOriginSettlement.Name);
+            }
+
+            if (culture.StringId.ToLower() == "apolssalian")
+            {
+                __result.SetTextVariable("ORIGIN_SETTLEMENT", clanOriginSettlement.Name);
+            }
+
+            if (culture.StringId.ToLower() == "lyrion")
+            {
+                __result.SetTextVariable("ORIGIN_SETTLEMENT", clanOriginSettlement.Name);
+            }
+
+            if (culture.StringId.ToLower() == "paleician")
+            {
+                __result.SetTextVariable("ORIGIN_SETTLEMENT", clanOriginSettlement.Name);
+            }
+        }
     }
-  }
 }

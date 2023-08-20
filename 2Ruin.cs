@@ -10,14 +10,17 @@ using TaleWorlds.CampaignSystem.Encounters;
 
 namespace CalradiaExpandedKingdoms.Ruins.Patches
 {
-  [HarmonyPatch(typeof (BanditsCampaignBehavior), "bandit_start_barter_condition")]
-  public class bandit_start_barter_conditionPatch
-  {
-    private static void Postfix(ref bool __result)
+    [HarmonyPatch(typeof(BanditsCampaignBehavior), "bandit_start_barter_condition")]
+    public class bandit_start_barter_conditionPatch
     {
-      if (PlayerEncounter.Current == null || PlayerEncounter.EncounteredParty == null || !PlayerEncounter.EncounteredParty.Id.Contains("ruin_attack_party_"))
-        return;
-      __result = false;
+        private static void Postfix(ref bool __result)
+        {
+            if (PlayerEncounter.Current == null || PlayerEncounter.EncounteredParty == null || !PlayerEncounter.EncounteredParty.Id.Contains("ruin_attack_party_"))
+            {
+                return;
+            }
+
+            __result = false;
+        }
     }
-  }
 }

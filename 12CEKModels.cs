@@ -12,14 +12,17 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKRaidModel : DefaultRaidModel
-  {
-    public override float CalculateHitDamage(MapEventSide attackerSide, float settlementHitPoints)
+    public class CEKRaidModel : DefaultRaidModel
     {
-      ExplainedNumber explainedNumber = new ExplainedNumber(base.CalculateHitDamage(attackerSide, settlementHitPoints));
-      if (attackerSide.LeaderParty.LeaderHero != null && attackerSide.LeaderParty.LeaderHero.Culture.HasFeat(CEKFeats.NordlingPositiveFeatOne))
-        explainedNumber.AddFactor(CEKFeats.NordlingPositiveFeatOne.EffectBonus, GameTexts.FindText("str_culture"));
-      return explainedNumber.ResultNumber;
+        public override float CalculateHitDamage(MapEventSide attackerSide, float settlementHitPoints)
+        {
+            ExplainedNumber explainedNumber = new ExplainedNumber(base.CalculateHitDamage(attackerSide, settlementHitPoints));
+            if (attackerSide.LeaderParty.LeaderHero != null && attackerSide.LeaderParty.LeaderHero.Culture.HasFeat(CEKFeats.NordlingPositiveFeatOne))
+            {
+                explainedNumber.AddFactor(CEKFeats.NordlingPositiveFeatOne.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            return explainedNumber.ResultNumber;
+        }
     }
-  }
 }

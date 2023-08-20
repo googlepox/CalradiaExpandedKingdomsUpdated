@@ -10,22 +10,28 @@ using TaleWorlds.CampaignSystem.Party;
 
 namespace CalradiaExpandedKingdoms.Patches
 {
-  [HarmonyPatch(typeof (CharacterObject), "GetUpgradeXpCost")]
-  public class GetUpgradeXpCostPatch
-  {
-    public static bool Prefix(
-      PartyBase party,
-      int index,
-      CharacterObject __instance,
-      ref int __result)
+    [HarmonyPatch(typeof(CharacterObject), "GetUpgradeXpCost")]
+    public class GetUpgradeXpCostPatch
     {
-      CharacterObject upgradeTarget = (CharacterObject) null;
-      if (index >= 0 && index < __instance.UpgradeTargets.Length)
-        upgradeTarget = __instance.UpgradeTargets[index];
-      __result = Campaign.Current.Models.PartyTroopUpgradeModel.GetXpCostForUpgrade(party, __instance, upgradeTarget);
-      if (__result <= 0)
-        __result = 100;
-      return false;
+        public static bool Prefix(
+          PartyBase party,
+          int index,
+          CharacterObject __instance,
+          ref int __result)
+        {
+            CharacterObject upgradeTarget = (CharacterObject)null;
+            if (index >= 0 && index < __instance.UpgradeTargets.Length)
+            {
+                upgradeTarget = __instance.UpgradeTargets[index];
+            }
+
+            __result = Campaign.Current.Models.PartyTroopUpgradeModel.GetXpCostForUpgrade(party, __instance, upgradeTarget);
+            if (__result <= 0)
+            {
+                __result = 100;
+            }
+
+            return false;
+        }
     }
-  }
 }

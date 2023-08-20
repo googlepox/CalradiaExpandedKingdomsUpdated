@@ -11,19 +11,22 @@ using TaleWorlds.CampaignSystem.CampaignBehaviors;
 
 namespace CalradiaExpandedKingdoms.Patches
 {
-  [HarmonyPatch(typeof (KingdomDecisionProposalBehavior), "ConsiderWar")]
-  public class AriorumPatch1
-  {
-    private static bool Prefix(
-      Clan clan,
-      Kingdom kingdom,
-      IFaction otherFaction,
-      ref bool __result)
+    [HarmonyPatch(typeof(KingdomDecisionProposalBehavior), "ConsiderWar")]
+    public class AriorumPatch1
     {
-      if (otherFaction != CEKHelpers.GetKingdomByID("ariorum") && kingdom != CEKHelpers.GetKingdomByID("ariorum"))
-        return true;
-      __result = false;
-      return false;
+        private static bool Prefix(
+          Clan clan,
+          Kingdom kingdom,
+          IFaction otherFaction,
+          ref bool __result)
+        {
+            if (otherFaction != CEKHelpers.GetKingdomByID("ariorum") && kingdom != CEKHelpers.GetKingdomByID("ariorum"))
+            {
+                return true;
+            }
+
+            __result = false;
+            return false;
+        }
     }
-  }
 }

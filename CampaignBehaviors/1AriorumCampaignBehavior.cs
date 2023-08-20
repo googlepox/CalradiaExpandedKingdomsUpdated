@@ -11,9 +11,12 @@ using TaleWorlds.CampaignSystem.CampaignBehaviors.BarterBehaviors;
 
 namespace CalradiaExpandedKingdoms.Patches
 {
-  [HarmonyPatch(typeof (DiplomaticBartersBehavior), "ConsiderWar")]
-  public class AriorumPatch2
-  {
-    private static bool Prefix(Clan clan, IFaction otherMapFaction) => otherMapFaction != CEKHelpers.GetKingdomByID("ariorum") && clan.Kingdom != CEKHelpers.GetKingdomByID("ariorum");
-  }
+    [HarmonyPatch(typeof(DiplomaticBartersBehavior), "ConsiderWar")]
+    public class AriorumPatch2
+    {
+        private static bool Prefix(Clan clan, IFaction otherMapFaction)
+        {
+            return otherMapFaction != CEKHelpers.GetKingdomByID("ariorum") && clan.Kingdom != CEKHelpers.GetKingdomByID("ariorum");
+        }
+    }
 }

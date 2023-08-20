@@ -11,31 +11,45 @@ using TaleWorlds.CampaignSystem.Settlements.Workshops;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKClanFinanceModel : DefaultClanFinanceModel
-  {
-    public override int CalculateOwnerIncomeFromWorkshop(Workshop workshop)
+    public class CEKClanFinanceModel : DefaultClanFinanceModel
     {
-      int incomeFromWorkshop = base.CalculateOwnerIncomeFromWorkshop(workshop);
-      if (workshop.Owner != null)
-      {
-        if (workshop.Owner.Culture.HasFeat(CEKFeats.RhodokPositiveFeatTwo))
-          incomeFromWorkshop = (int) ((double) incomeFromWorkshop * (1.0 + (double) CEKFeats.RhodokPositiveFeatTwo.EffectBonus));
-        if (workshop.Owner.Culture.HasFeat(CEKFeats.RepublicNegativeFeatOne))
-          incomeFromWorkshop = (int) ((double) incomeFromWorkshop * (1.0 + (double) CEKFeats.RepublicNegativeFeatOne.EffectBonus));
-        if (workshop.Owner.Culture.HasFeat(CEKFeats.SturgiaPositiveFeatFour))
-          incomeFromWorkshop = (int) ((double) incomeFromWorkshop * (1.0 + (double) CEKFeats.SturgiaPositiveFeatFour.EffectBonus));
-        if (workshop.Owner.Culture.HasFeat(CEKFeats.SturgiaPositiveFeatFour))
-          incomeFromWorkshop = (int) ((double) incomeFromWorkshop * (1.0 + (double) CEKFeats.VlandianPositiveFeatFour.EffectBonus));
-      }
-      return incomeFromWorkshop;
-    }
+        public override int CalculateOwnerIncomeFromWorkshop(Workshop workshop)
+        {
+            int incomeFromWorkshop = base.CalculateOwnerIncomeFromWorkshop(workshop);
+            if (workshop.Owner != null)
+            {
+                if (workshop.Owner.Culture.HasFeat(CEKFeats.RhodokPositiveFeatTwo))
+                {
+                    incomeFromWorkshop = (int)((double)incomeFromWorkshop * (1.0 + (double)CEKFeats.RhodokPositiveFeatTwo.EffectBonus));
+                }
 
-    public override int CalculateOwnerIncomeFromCaravan(MobileParty caravan)
-    {
-      int incomeFromCaravan = base.CalculateOwnerIncomeFromCaravan(caravan);
-      if (caravan.Owner != null && caravan.Owner.Culture.HasFeat(CEKFeats.LyrionPositiveFeatFour))
-        incomeFromCaravan = (int) ((double) incomeFromCaravan * 1.1000000238418579);
-      return incomeFromCaravan;
+                if (workshop.Owner.Culture.HasFeat(CEKFeats.RepublicNegativeFeatOne))
+                {
+                    incomeFromWorkshop = (int)((double)incomeFromWorkshop * (1.0 + (double)CEKFeats.RepublicNegativeFeatOne.EffectBonus));
+                }
+
+                if (workshop.Owner.Culture.HasFeat(CEKFeats.SturgiaPositiveFeatFour))
+                {
+                    incomeFromWorkshop = (int)((double)incomeFromWorkshop * (1.0 + (double)CEKFeats.SturgiaPositiveFeatFour.EffectBonus));
+                }
+
+                if (workshop.Owner.Culture.HasFeat(CEKFeats.SturgiaPositiveFeatFour))
+                {
+                    incomeFromWorkshop = (int)((double)incomeFromWorkshop * (1.0 + (double)CEKFeats.VlandianPositiveFeatFour.EffectBonus));
+                }
+            }
+            return incomeFromWorkshop;
+        }
+
+        public override int CalculateOwnerIncomeFromCaravan(MobileParty caravan)
+        {
+            int incomeFromCaravan = base.CalculateOwnerIncomeFromCaravan(caravan);
+            if (caravan.Owner != null && caravan.Owner.Culture.HasFeat(CEKFeats.LyrionPositiveFeatFour))
+            {
+                incomeFromCaravan = (int)((double)incomeFromCaravan * 1.1000000238418579);
+            }
+
+            return incomeFromCaravan;
+        }
     }
-  }
 }

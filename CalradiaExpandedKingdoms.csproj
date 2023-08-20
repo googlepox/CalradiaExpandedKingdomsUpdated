@@ -33,7 +33,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\CalradiaExpandedKingdoms\bin\Win64_Shipping_Client\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -123,6 +123,9 @@
     <Compile Include="ArmyComposition.cs" />
     <Compile Include="CampaignBehaviors\CustomSaveDefiner.cs" />
     <Compile Include="CampaignBehaviors\CEKCampaignBehavior.cs" />
+    <Compile Include="CEKCharacterCreation\CharacterCreationPatch.cs" />
+    <Compile Include="Patches\GetBasicVolunteerPatch.cs" />
+    <Compile Include="Patches\GetDailyVolunteerProductionProbabilityPatch.cs" />
     <Compile Include="RecruitData.cs" />
     <Compile Include="RecruitManager.cs" />
     <Compile Include="EquipBannerMissionBehavior.cs" />
@@ -173,12 +176,12 @@
     <Compile Include="17CEKModels.cs" />
     <Compile Include="18CEKModels.cs" />
     <Compile Include="19CEKModels.cs" />
-    <Compile Include="20CEKModels.cs" />
     <Compile Include="CEKEvents.cs" />
     <Compile Include="CEKCharacterCreation\CEKCharacterCreationContent.cs" />
     <Compile Include="CEKCharacterCreation\CEKGameManager.cs" />
     <Compile Include="CEKCharacterCreation\Patches.cs" />
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,9 +12,12 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Patches
 {
-  [HarmonyPatch(typeof (WorkshopsCampaignBehavior), "IsItemPreferredForTown")]
-  internal class IsItemPreferredPatch
-  {
-    public static void Postfix(ref bool __result, ItemObject item, Town townComponent) => __result = CEKHelpers.IsInCultureGroup(item.Culture, (BasicCultureObject) townComponent.Culture);
-  }
+    [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "IsItemPreferredForTown")]
+    internal class IsItemPreferredPatch
+    {
+        public static void Postfix(ref bool __result, ItemObject item, Town townComponent)
+        {
+            __result = CEKHelpers.IsInCultureGroup(item.Culture, (BasicCultureObject)townComponent.Culture);
+        }
+    }
 }

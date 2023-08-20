@@ -12,29 +12,49 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKSettlementLoyaltyModel : DefaultSettlementLoyaltyModel
-  {
-    public override ExplainedNumber CalculateLoyaltyChange(Town town, bool includeDescriptions = false)
+    public class CEKSettlementLoyaltyModel : DefaultSettlementLoyaltyModel
     {
-      ExplainedNumber loyaltyChange = base.CalculateLoyaltyChange(town, includeDescriptions);
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.AseraiNegativeFeatTwo))
-        loyaltyChange.Add(CEKFeats.AseraiNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.LyrionNegativeFeatTwo))
-        loyaltyChange.Add(CEKFeats.LyrionNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.AriorumNegativeTwo))
-        loyaltyChange.Add(CEKFeats.AriorumNegativeTwo.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.ApolssalianNegativeFeatOne) && town.Culture != town.OwnerClan.Culture)
-        loyaltyChange.Add(CEKFeats.ApolssalianNegativeFeatOne.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.Governor != null)
-      {
-        if (town.Governor.Culture != town.Culture && town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.EmpirePositiveFeatFour))
-          loyaltyChange.Add(1f, GameTexts.FindText("str_culture"));
-        if (town.Governor.Culture != town.Culture && town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.VagirPositiveFeatOne))
-          loyaltyChange.Add(1f, GameTexts.FindText("str_culture"));
-        if (town.Governor.Culture != town.Culture && town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.PaleicianPositiveFeatFour))
-          loyaltyChange.Add(1f, GameTexts.FindText("str_culture"));
-      }
-      return loyaltyChange;
+        public override ExplainedNumber CalculateLoyaltyChange(Town town, bool includeDescriptions = false)
+        {
+            ExplainedNumber loyaltyChange = base.CalculateLoyaltyChange(town, includeDescriptions);
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.AseraiNegativeFeatTwo))
+            {
+                loyaltyChange.Add(CEKFeats.AseraiNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.LyrionNegativeFeatTwo))
+            {
+                loyaltyChange.Add(CEKFeats.LyrionNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.AriorumNegativeTwo))
+            {
+                loyaltyChange.Add(CEKFeats.AriorumNegativeTwo.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.ApolssalianNegativeFeatOne) && town.Culture != town.OwnerClan.Culture)
+            {
+                loyaltyChange.Add(CEKFeats.ApolssalianNegativeFeatOne.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.Governor != null)
+            {
+                if (town.Governor.Culture != town.Culture && town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.EmpirePositiveFeatFour))
+                {
+                    loyaltyChange.Add(1f, GameTexts.FindText("str_culture"));
+                }
+
+                if (town.Governor.Culture != town.Culture && town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.VagirPositiveFeatOne))
+                {
+                    loyaltyChange.Add(1f, GameTexts.FindText("str_culture"));
+                }
+
+                if (town.Governor.Culture != town.Culture && town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.PaleicianPositiveFeatFour))
+                {
+                    loyaltyChange.Add(1f, GameTexts.FindText("str_culture"));
+                }
+            }
+            return loyaltyChange;
+        }
     }
-  }
 }

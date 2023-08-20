@@ -13,37 +13,42 @@ using TaleWorlds.CampaignSystem.Settlements;
 
 namespace CalradiaExpandedKingdoms.Ruins.Patches
 {
-  [HarmonyPatch(typeof (DefaultEncounterGameMenuModel), "GetEncounterMenu")]
-  public class CEKGetEncounterMenu
-  {
-    public static MethodInfo GetEncounteredPartyBaseMethodInfo = AccessTools.Method(typeof (DefaultEncounterGameMenuModel), "GetEncounteredPartyBase", (Type[]) null, (Type[]) null);
-
-    private static PartyBase GetEncounteredPartyBase(
-      PartyBase attackerParty,
-      PartyBase defenderParty,
-      DefaultEncounterGameMenuModel instance)
+    [HarmonyPatch(typeof(DefaultEncounterGameMenuModel), "GetEncounterMenu")]
+    public class CEKGetEncounterMenu
     {
-      return (PartyBase) CEKGetEncounterMenu.GetEncounteredPartyBaseMethodInfo.Invoke((object) instance, new object[2]
-      {
+        public static MethodInfo GetEncounteredPartyBaseMethodInfo = AccessTools.Method(typeof(DefaultEncounterGameMenuModel), "GetEncounteredPartyBase", (Type[])null, (Type[])null);
+
+        private static PartyBase GetEncounteredPartyBase(
+          PartyBase attackerParty,
+          PartyBase defenderParty,
+          DefaultEncounterGameMenuModel instance)
+        {
+            return (PartyBase)CEKGetEncounterMenu.GetEncounteredPartyBaseMethodInfo.Invoke((object)instance, new object[2]
+            {
         (object) attackerParty,
         (object) defenderParty
-      });
-    }
+            });
+        }
 
-    private static void Postfix(
-      PartyBase attackerParty,
-      PartyBase defenderParty,
-      bool startBattle,
-      bool joinBattle,
-      DefaultEncounterGameMenuModel __instance,
-      ref string __result)
-    {
-      PartyBase encounteredPartyBase = CEKGetEncounterMenu.GetEncounteredPartyBase(attackerParty, defenderParty, __instance);
-      if (!encounteredPartyBase.IsSettlement)
-        return;
-      Settlement settlement = encounteredPartyBase.Settlement;
-      if (settlement.SettlementComponent != null && settlement.SettlementComponent is Ruin)
-        __result = "ruin_place";
+        private static void Postfix(
+          PartyBase attackerParty,
+          PartyBase defenderParty,
+          bool startBattle,
+          bool joinBattle,
+          DefaultEncounterGameMenuModel __instance,
+          ref string __result)
+        {
+            PartyBase encounteredPartyBase = CEKGetEncounterMenu.GetEncounteredPartyBase(attackerParty, defenderParty, __instance);
+            if (!encounteredPartyBase.IsSettlement)
+            {
+                return;
+            }
+
+            Settlement settlement = encounteredPartyBase.Settlement;
+            if (settlement.SettlementComponent != null && settlement.SettlementComponent is Ruin)
+            {
+                __result = "ruin_place";
+            }
+        }
     }
-  }
 }

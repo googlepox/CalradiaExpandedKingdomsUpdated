@@ -13,26 +13,41 @@ using TaleWorlds.Localization;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKBuildingConstructionModel : DefaultBuildingConstructionModel
-  {
-    private static readonly TextObject CultureText = GameTexts.FindText("str_culture");
-
-    public override ExplainedNumber CalculateDailyConstructionPower(
-      Town town,
-      bool includeDescriptions = false)
+    public class CEKBuildingConstructionModel : DefaultBuildingConstructionModel
     {
-      ExplainedNumber constructionPower = base.CalculateDailyConstructionPower(town, includeDescriptions);
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.EmpirePositiveFeatThree))
-        constructionPower.AddFactor(CEKFeats.EmpirePositiveFeatThree.EffectBonus, CEKBuildingConstructionModel.CultureText);
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.RepublicPositiveFeatOne))
-        constructionPower.AddFactor(CEKFeats.RepublicPositiveFeatOne.EffectBonus, CEKBuildingConstructionModel.CultureText);
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.PaleicianPositiveFeatTwo))
-        constructionPower.AddFactor(CEKFeats.PaleicianPositiveFeatTwo.EffectBonus, CEKBuildingConstructionModel.CultureText);
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.KhergitPositiveFeatTwo))
-        constructionPower.AddFactor(CEKFeats.KhergitPositiveFeatTwo.EffectBonus, CEKBuildingConstructionModel.CultureText);
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.LyrionNegativeFeatOne))
-        constructionPower.AddFactor(CEKFeats.LyrionNegativeFeatOne.EffectBonus, CEKBuildingConstructionModel.CultureText);
-      return constructionPower;
+        private static readonly TextObject CultureText = GameTexts.FindText("str_culture");
+
+        public override ExplainedNumber CalculateDailyConstructionPower(
+          Town town,
+          bool includeDescriptions = false)
+        {
+            ExplainedNumber constructionPower = base.CalculateDailyConstructionPower(town, includeDescriptions);
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.EmpirePositiveFeatThree))
+            {
+                constructionPower.AddFactor(CEKFeats.EmpirePositiveFeatThree.EffectBonus, CEKBuildingConstructionModel.CultureText);
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.RepublicPositiveFeatOne))
+            {
+                constructionPower.AddFactor(CEKFeats.RepublicPositiveFeatOne.EffectBonus, CEKBuildingConstructionModel.CultureText);
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.PaleicianPositiveFeatTwo))
+            {
+                constructionPower.AddFactor(CEKFeats.PaleicianPositiveFeatTwo.EffectBonus, CEKBuildingConstructionModel.CultureText);
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.KhergitPositiveFeatTwo))
+            {
+                constructionPower.AddFactor(CEKFeats.KhergitPositiveFeatTwo.EffectBonus, CEKBuildingConstructionModel.CultureText);
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.LyrionNegativeFeatOne))
+            {
+                constructionPower.AddFactor(CEKFeats.LyrionNegativeFeatOne.EffectBonus, CEKBuildingConstructionModel.CultureText);
+            }
+
+            return constructionPower;
+        }
     }
-  }
 }

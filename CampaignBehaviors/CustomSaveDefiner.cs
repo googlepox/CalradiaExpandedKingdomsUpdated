@@ -11,20 +11,23 @@ using TaleWorlds.SaveSystem;
 
 namespace CalradiaExpandedKingdoms
 {
-  public class CustomSaveDefiner : SaveableTypeDefiner
-  {
-    public CustomSaveDefiner()
-      : base(81818181)
+    public class CustomSaveDefiner : SaveableTypeDefiner
     {
-    }
+        public CustomSaveDefiner()
+          : base(81818181)
+        {
+        }
 
-    protected override void DefineClassTypes()
-    {
-      this.AddClassDefinition(typeof (Ruin), 1);
-      this.AddEnumDefinition(typeof (RuinType), 2);
-      this.AddClassDefinition(typeof (FindItemInRuinQuestBehavior.FindItemInRuinQuest), 3);
-    }
+        protected override void DefineClassTypes()
+        {
+            this.AddClassDefinition(typeof(Ruin), 1);
+            this.AddEnumDefinition(typeof(RuinType), 2);
+            this.AddClassDefinition(typeof(FindItemInRuinQuestBehavior.FindItemInRuinQuest), 3);
+        }
 
-    protected override void DefineContainerDefinitions() => this.ConstructContainerDefinition(typeof (List<Ruin>));
-  }
+        protected override void DefineContainerDefinitions()
+        {
+            this.ConstructContainerDefinition(typeof(List<Ruin>));
+        }
+    }
 }

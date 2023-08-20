@@ -12,27 +12,41 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKSettlementMilitiaModel : DefaultSettlementMilitiaModel
-  {
-    public override ExplainedNumber CalculateMilitiaChange(
-      Settlement settlement,
-      bool includeDescriptions = false)
+    public class CEKSettlementMilitiaModel : DefaultSettlementMilitiaModel
     {
-      ExplainedNumber militiaChange = base.CalculateMilitiaChange(settlement, includeDescriptions);
-      if (settlement.OwnerClan != null && settlement.OwnerClan.Leader != null)
-      {
-        if (settlement.OwnerClan.Leader.Culture.HasFeat(CEKFeats.RhodokPositiveFeatTwo))
-          militiaChange.Add(1f, GameTexts.FindText("str_culture"));
-        if (settlement.OwnerClan.Leader.Culture.HasFeat(CEKFeats.KhuzaitNegativeFeatTwo))
-          militiaChange.Add(CEKFeats.KhuzaitNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
-        if (settlement.OwnerClan.Leader.Culture.HasFeat(CEKFeats.VagirPositiveFeatThree))
-          militiaChange.Add(1f, GameTexts.FindText("str_culture"));
-        if (settlement.OwnerClan.Leader.Culture.HasFeat(CEKFeats.PaleicianPositiveFeatThree))
-          militiaChange.Add(0.5f, GameTexts.FindText("str_culture"));
-        if (settlement.OwnerClan.Leader.Culture.HasFeat(CEKFeats.ApolssalianPositiveFeatThree) && settlement.OwnerClan.Culture == settlement.Culture)
-          militiaChange.Add(CEKFeats.ApolssalianPositiveFeatThree.EffectBonus, GameTexts.FindText("str_culture"));
-      }
-      return militiaChange;
+        public override ExplainedNumber CalculateMilitiaChange(
+          Settlement settlement,
+          bool includeDescriptions = false)
+        {
+            ExplainedNumber militiaChange = base.CalculateMilitiaChange(settlement, includeDescriptions);
+            if (settlement.OwnerClan != null && settlement.OwnerClan.Leader != null)
+            {
+                if (settlement.OwnerClan.Leader.Culture.HasFeat(CEKFeats.RhodokPositiveFeatTwo))
+                {
+                    militiaChange.Add(1f, GameTexts.FindText("str_culture"));
+                }
+
+                if (settlement.OwnerClan.Leader.Culture.HasFeat(CEKFeats.KhuzaitNegativeFeatTwo))
+                {
+                    militiaChange.Add(CEKFeats.KhuzaitNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
+                }
+
+                if (settlement.OwnerClan.Leader.Culture.HasFeat(CEKFeats.VagirPositiveFeatThree))
+                {
+                    militiaChange.Add(1f, GameTexts.FindText("str_culture"));
+                }
+
+                if (settlement.OwnerClan.Leader.Culture.HasFeat(CEKFeats.PaleicianPositiveFeatThree))
+                {
+                    militiaChange.Add(0.5f, GameTexts.FindText("str_culture"));
+                }
+
+                if (settlement.OwnerClan.Leader.Culture.HasFeat(CEKFeats.ApolssalianPositiveFeatThree) && settlement.OwnerClan.Culture == settlement.Culture)
+                {
+                    militiaChange.Add(CEKFeats.ApolssalianPositiveFeatThree.EffectBonus, GameTexts.FindText("str_culture"));
+                }
+            }
+            return militiaChange;
+        }
     }
-  }
 }

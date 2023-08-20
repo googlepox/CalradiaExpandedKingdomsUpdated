@@ -11,31 +11,34 @@ using TaleWorlds.Localization;
 
 namespace CalradiaExpandedKingdoms.Patches
 {
-  [HarmonyPatch(typeof (FactionHelper), "GenerateClanNameforPlayer")]
-  internal class GenerateClanNameforPlayerPatch
-  {
-    public static void Postfix(ref TextObject __result)
+    [HarmonyPatch(typeof(FactionHelper), "GenerateClanNameforPlayer")]
+    internal class GenerateClanNameforPlayerPatch
     {
-      CultureObject culture = CharacterObject.PlayerCharacter.Culture;
-      if (culture.StringId.ToLower() == "rhodok")
-      {
-        __result = new TextObject("{=p1dFvTAc}dey {ORIGIN_SETTLEMENT}");
-        __result.SetTextVariable("ORIGIN_SETTLEMENT", new TextObject("{=Settlements.Settlement.name.town_V1}Sargot"));
-      }
-      if (culture.StringId.ToLower() == "apolssalian")
-      {
-        __result = new TextObject("{=culture.apolssalian.clanname}Oikos {ORIGIN_SETTLEMENT}");
-        __result.SetTextVariable("ORIGIN_SETTLEMENT", new TextObject("{=!}Quyaz"));
-      }
-      if (culture.StringId.ToLower() == "lyrion")
-      {
-        __result = new TextObject("{=culture.lyrion.clanname}Atrs {ORIGIN_SETTLEMENT}");
-        __result.SetTextVariable("ORIGIN_SETTLEMENT", new TextObject("{=!}Razih"));
-      }
-      if (!(culture.StringId.ToLower() == "paleician"))
-        return;
-      __result = new TextObject("{=culture.paleician.clanname}House {ORIGIN_SETTLEMENT}");
-      __result.SetTextVariable("ORIGIN_SETTLEMENT", new TextObject("{=!}Lageta"));
+        public static void Postfix(ref TextObject __result)
+        {
+            CultureObject culture = CharacterObject.PlayerCharacter.Culture;
+            if (culture.StringId.ToLower() == "rhodok")
+            {
+                __result = new TextObject("{=p1dFvTAc}dey {ORIGIN_SETTLEMENT}");
+                __result.SetTextVariable("ORIGIN_SETTLEMENT", new TextObject("{=Settlements.Settlement.name.town_V1}Sargot"));
+            }
+            if (culture.StringId.ToLower() == "apolssalian")
+            {
+                __result = new TextObject("{=culture.apolssalian.clanname}Oikos {ORIGIN_SETTLEMENT}");
+                __result.SetTextVariable("ORIGIN_SETTLEMENT", new TextObject("{=!}Quyaz"));
+            }
+            if (culture.StringId.ToLower() == "lyrion")
+            {
+                __result = new TextObject("{=culture.lyrion.clanname}Atrs {ORIGIN_SETTLEMENT}");
+                __result.SetTextVariable("ORIGIN_SETTLEMENT", new TextObject("{=!}Razih"));
+            }
+            if (!(culture.StringId.ToLower() == "paleician"))
+            {
+                return;
+            }
+
+            __result = new TextObject("{=culture.paleician.clanname}House {ORIGIN_SETTLEMENT}");
+            __result.SetTextVariable("ORIGIN_SETTLEMENT", new TextObject("{=!}Lageta"));
+        }
     }
-  }
 }

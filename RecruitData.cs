@@ -8,26 +8,26 @@ using TaleWorlds.CampaignSystem;
 
 namespace CalradiaExpandedKingdoms
 {
-  public struct RecruitData
-  {
-    public CultureObject culture;
-    public CharacterObject character;
-    public IFaction faction;
-    public int chance;
-    public bool isRetinue;
-
-    public RecruitData(
-      CultureObject culture,
-      CharacterObject character,
-      IFaction faction,
-      int chance,
-      bool isRetinue)
+    public struct RecruitData
     {
-      this.culture = culture;
-      this.character = character;
-      this.faction = faction;
-      this.chance = chance;
-      this.isRetinue = isRetinue;
+        public CultureObject culture;
+        public CharacterObject character;
+        public IFaction faction;
+        public int chance;
+        public bool isRetinue;
+
+        public RecruitData(
+          CultureObject culture,
+          CharacterObject character,
+          IFaction faction,
+          int chance,
+          bool isRetinue)
+        {
+            this.culture = culture;
+            this.character = character;
+            this.faction = faction;
+            this.chance = chance;
+            this.isRetinue = isRetinue;
+        }
     }
-  }
 }

@@ -14,29 +14,39 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Patches
 {
-  [HarmonyPatch(typeof (FightTournamentGame), "CachePossibleRegularRewardItems")]
-  internal class TournamentPatch
-  {
-    public static void Postfix(
-      FightTournamentGame __instance,
-      ref List<ItemObject> ____possibleRegularRewardItemObjectsCache)
+    [HarmonyPatch(typeof(FightTournamentGame), "CachePossibleRegularRewardItems")]
+    internal class TournamentPatch
     {
-      if (____possibleRegularRewardItemObjectsCache == null)
-        ____possibleRegularRewardItemObjectsCache = new List<ItemObject>();
-      List<ItemObject> collection = new List<ItemObject>();
-      foreach (ItemObject itemObject in (List<ItemObject>) Items.All)
-      {
-        if (itemObject.Value > 1600 && itemObject.Value < 5000 && !itemObject.NotMerchandise && (itemObject.IsCraftedWeapon || itemObject.IsMountable || itemObject.ArmorComponent != null) && !itemObject.IsCraftedByPlayer)
+        public static void Postfix(
+          FightTournamentGame __instance,
+          ref List<ItemObject> ____possibleRegularRewardItemObjectsCache)
         {
-          if (CEKHelpers.IsInCultureGroup(itemObject.Culture, (BasicCultureObject) __instance.Town.Culture))
-            ____possibleRegularRewardItemObjectsCache.Add(itemObject);
-          else
-            collection.Add(itemObject);
+            if (____possibleRegularRewardItemObjectsCache == null)
+            {
+                ____possibleRegularRewardItemObjectsCache = new List<ItemObject>();
+            }
+
+            List<ItemObject> collection = new List<ItemObject>();
+            foreach (ItemObject itemObject in (List<ItemObject>)Items.All)
+            {
+                if (itemObject.Value > 1600 && itemObject.Value < 5000 && !itemObject.NotMerchandise && (itemObject.IsCraftedWeapon || itemObject.IsMountable || itemObject.ArmorComponent != null) && !itemObject.IsCraftedByPlayer)
+                {
+                    if (CEKHelpers.IsInCultureGroup(itemObject.Culture, (BasicCultureObject)__instance.Town.Culture))
+                    {
+                        ____possibleRegularRewardItemObjectsCache.Add(itemObject);
+                    }
+                    else
+                    {
+                        collection.Add(itemObject);
+                    }
+                }
+            }
+            if (____possibleRegularRewardItemObjectsCache.IsEmpty<ItemObject>())
+            {
+                ____possibleRegularRewardItemObjectsCache.AddRange((IEnumerable<ItemObject>)collection);
+            }
+
+            ____possibleRegularRewardItemObjectsCache.Sort((Comparison<ItemObject>)((x, y) => x.Value.CompareTo(y.Value)));
         }
-      }
-      if (____possibleRegularRewardItemObjectsCache.IsEmpty<ItemObject>())
-        ____possibleRegularRewardItemObjectsCache.AddRange((IEnumerable<ItemObject>) collection);
-      ____possibleRegularRewardItemObjectsCache.Sort((Comparison<ItemObject>) ((x, y) => x.Value.CompareTo(y.Value)));
     }
-  }
 }

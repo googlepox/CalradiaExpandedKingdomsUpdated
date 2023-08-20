@@ -12,22 +12,27 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKPartyTroopUpgradeModel : DefaultPartyTroopUpgradeModel
-  {
-    public override int GetGoldCostForUpgrade(
-      PartyBase party,
-      CharacterObject characterObject,
-      CharacterObject upgradeTarget)
+    public class CEKPartyTroopUpgradeModel : DefaultPartyTroopUpgradeModel
     {
-      ExplainedNumber explainedNumber = new ExplainedNumber((float) base.GetGoldCostForUpgrade(party, characterObject, upgradeTarget));
-      if (party.IsMobile && party.LeaderHero != null)
-      {
-        if (party.LeaderHero.Culture.HasFeat(CEKFeats.KhergitPositiveFeatThree) && upgradeTarget.IsMounted)
-          explainedNumber.AddFactor(CEKFeats.KhergitPositiveFeatThree.EffectBonus, GameTexts.FindText("str_culture"));
-        if (party.LeaderHero.Culture.HasFeat(CEKFeats.RepublicNegativeFeatTwo))
-          explainedNumber.AddFactor(CEKFeats.RepublicNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
-      }
-      return (int) explainedNumber.ResultNumber;
+        public override int GetGoldCostForUpgrade(
+          PartyBase party,
+          CharacterObject characterObject,
+          CharacterObject upgradeTarget)
+        {
+            ExplainedNumber explainedNumber = new ExplainedNumber((float)base.GetGoldCostForUpgrade(party, characterObject, upgradeTarget));
+            if (party.IsMobile && party.LeaderHero != null)
+            {
+                if (party.LeaderHero.Culture.HasFeat(CEKFeats.KhergitPositiveFeatThree) && upgradeTarget.IsMounted)
+                {
+                    explainedNumber.AddFactor(CEKFeats.KhergitPositiveFeatThree.EffectBonus, GameTexts.FindText("str_culture"));
+                }
+
+                if (party.LeaderHero.Culture.HasFeat(CEKFeats.RepublicNegativeFeatTwo))
+                {
+                    explainedNumber.AddFactor(CEKFeats.RepublicNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
+                }
+            }
+            return (int)explainedNumber.ResultNumber;
+        }
     }
-  }
 }

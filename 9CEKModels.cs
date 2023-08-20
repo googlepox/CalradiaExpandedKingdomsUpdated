@@ -11,21 +11,24 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKPriceFactorModel : DefaultTradeItemPriceFactorModel
-  {
-    public override float GetTradePenalty(
-      ItemObject item,
-      MobileParty clientParty,
-      PartyBase merchant,
-      bool isSelling,
-      float inStore,
-      float supply,
-      float demand)
+    public class CEKPriceFactorModel : DefaultTradeItemPriceFactorModel
     {
-      float tradePenalty = base.GetTradePenalty(item, clientParty, merchant, isSelling, inStore, supply, demand);
-      if (clientParty != null && clientParty.IsCaravan && clientParty.Owner.Culture.HasFeat(CEKFeats.AriorumPositiveFour))
-        tradePenalty *= 0.8f;
-      return tradePenalty;
+        public override float GetTradePenalty(
+          ItemObject item,
+          MobileParty clientParty,
+          PartyBase merchant,
+          bool isSelling,
+          float inStore,
+          float supply,
+          float demand)
+        {
+            float tradePenalty = base.GetTradePenalty(item, clientParty, merchant, isSelling, inStore, supply, demand);
+            if (clientParty != null && clientParty.IsCaravan && clientParty.Owner.Culture.HasFeat(CEKFeats.AriorumPositiveFour))
+            {
+                tradePenalty *= 0.8f;
+            }
+
+            return tradePenalty;
+        }
     }
-  }
 }

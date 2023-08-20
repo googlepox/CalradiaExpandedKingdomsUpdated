@@ -11,19 +11,22 @@ using TaleWorlds.Library;
 
 namespace CalradiaExpandedKingdoms.Ruins.Patches
 {
-  [HarmonyPatch(typeof (SettlementNameplateVM), "IsVisible")]
-  public class IsVisiblePatch
-  {
-    private static void Postfix(
-      in Vec3 cameraPosition,
-      SettlementNameplateVM __instance,
-      ref bool __result)
+    [HarmonyPatch(typeof(SettlementNameplateVM), "IsVisible")]
+    public class IsVisiblePatch
     {
-      SettlementComponent settlementComponent = __instance.Settlement.SettlementComponent;
-      if (settlementComponent == null || !(settlementComponent is Ruin))
-        return;
-      Ruin ruin = settlementComponent as Ruin;
-      __result = ruin.IsSpotted;
+        private static void Postfix(
+          in Vec3 cameraPosition,
+          SettlementNameplateVM __instance,
+          ref bool __result)
+        {
+            SettlementComponent settlementComponent = __instance.Settlement.SettlementComponent;
+            if (settlementComponent == null || !(settlementComponent is Ruin))
+            {
+                return;
+            }
+
+            Ruin ruin = settlementComponent as Ruin;
+            __result = ruin.IsSpotted;
+        }
     }
-  }
 }

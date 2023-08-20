@@ -12,22 +12,27 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKSettlementFoodModel : DefaultSettlementFoodModel
-  {
-    public override ExplainedNumber CalculateTownFoodStocksChange(
-      Town town,
-      bool includeMarketStocks = true,
-      bool includeDescriptions = false)
+    public class CEKSettlementFoodModel : DefaultSettlementFoodModel
     {
-      ExplainedNumber foodStocksChange = base.CalculateTownFoodStocksChange(town, includeMarketStocks, includeDescriptions);
-      if (town.OwnerClan != null && town.OwnerClan.Leader != null)
-      {
-        if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.VagirPositiveFeatFour))
-          foodStocksChange.Add(1f, GameTexts.FindText("str_culture"));
-        if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.RepublicPositiveFeatFour))
-          foodStocksChange.Add(CEKFeats.RepublicPositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
-      }
-      return foodStocksChange;
+        public override ExplainedNumber CalculateTownFoodStocksChange(
+          Town town,
+          bool includeMarketStocks = true,
+          bool includeDescriptions = false)
+        {
+            ExplainedNumber foodStocksChange = base.CalculateTownFoodStocksChange(town, includeMarketStocks, includeDescriptions);
+            if (town.OwnerClan != null && town.OwnerClan.Leader != null)
+            {
+                if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.VagirPositiveFeatFour))
+                {
+                    foodStocksChange.Add(1f, GameTexts.FindText("str_culture"));
+                }
+
+                if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.RepublicPositiveFeatFour))
+                {
+                    foodStocksChange.Add(CEKFeats.RepublicPositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
+                }
+            }
+            return foodStocksChange;
+        }
     }
-  }
 }

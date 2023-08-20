@@ -13,38 +13,46 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Patches
 {
-  [HarmonyPatch(typeof (Settlement), "AddTroopToMilitiaParty")]
-  internal class MilitiaSpawnPatch
-  {
-    public static bool Prefix(
-      MobileParty militaParty,
-      CharacterObject militiaTroop,
-      CharacterObject eliteMilitiaTroop,
-      float troopRatio,
-      ref int numberToAddRemaining,
-      ref Settlement __instance)
+    [HarmonyPatch(typeof(Settlement), "AddTroopToMilitiaParty")]
+    internal class MilitiaSpawnPatch
     {
-      if (numberToAddRemaining > 0)
-      {
-        int num = MBRandom.RoundRandomized(troopRatio * (float) numberToAddRemaining);
-        float militiaSpawnChance = Campaign.Current.Models.SettlementMilitiaModel.CalculateEliteMilitiaSpawnChance(__instance);
-        for (int index = 0; index < num; ++index)
+        public static bool Prefix(
+          MobileParty militaParty,
+          CharacterObject militiaTroop,
+          CharacterObject eliteMilitiaTroop,
+          float troopRatio,
+          ref int numberToAddRemaining,
+          ref Settlement __instance)
         {
-          if ((double) MBRandom.RandomFloat < (double) militiaSpawnChance)
-            militaParty.MemberRoster.AddToCounts(eliteMilitiaTroop, 1);
-          else if (militaParty.HomeSettlement.StringId == "town_TT1")
-          {
-            if (MBRandom.RandomInt(1, 100) <= 10)
-              militaParty.MemberRoster.AddToCounts(CEKHelpers.GetNPCByID("ariorum_bomber"), 1);
-            else
-              militaParty.MemberRoster.AddToCounts(militiaTroop, 1);
-          }
-          else
-            militaParty.MemberRoster.AddToCounts(militiaTroop, 1);
+            if (numberToAddRemaining > 0)
+            {
+                int num = MBRandom.RoundRandomized(troopRatio * (float)numberToAddRemaining);
+                float militiaSpawnChance = Campaign.Current.Models.SettlementMilitiaModel.CalculateEliteMilitiaSpawnChance(__instance);
+                for (int index = 0; index < num; ++index)
+                {
+                    if ((double)MBRandom.RandomFloat < (double)militiaSpawnChance)
+                    {
+                        militaParty.MemberRoster.AddToCounts(eliteMilitiaTroop, 1);
+                    }
+                    else if (militaParty.HomeSettlement.StringId == "town_TT1")
+                    {
+                        if (MBRandom.RandomInt(1, 100) <= 10)
+                        {
+                            militaParty.MemberRoster.AddToCounts(CEKHelpers.GetNPCByID("ariorum_bomber"), 1);
+                        }
+                        else
+                        {
+                            militaParty.MemberRoster.AddToCounts(militiaTroop, 1);
+                        }
+                    }
+                    else
+                    {
+                        militaParty.MemberRoster.AddToCounts(militiaTroop, 1);
+                    }
+                }
+                numberToAddRemaining -= num;
+            }
+            return false;
         }
-        numberToAddRemaining -= num;
-      }
-      return false;
     }
-  }
 }

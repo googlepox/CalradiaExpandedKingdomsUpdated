@@ -12,26 +12,47 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKSettlementSecurityModel : DefaultSettlementSecurityModel
-  {
-    public override ExplainedNumber CalculateSecurityChange(Town town, bool includeDescriptions = false)
+    public class CEKSettlementSecurityModel : DefaultSettlementSecurityModel
     {
-      ExplainedNumber securityChange = base.CalculateSecurityChange(town, includeDescriptions);
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.EmpirePositiveFeatFour))
-        securityChange.Add(CEKFeats.EmpirePositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.VagirPositiveFeatOne))
-        securityChange.Add(CEKFeats.VagirPositiveFeatOne.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.KhuzaitNegativeFeatTwo))
-        securityChange.Add(CEKFeats.KhuzaitNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.LyrionNegativeFeatTwo))
-        securityChange.Add(CEKFeats.LyrionNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.PaleicianPositiveFeatFour))
-        securityChange.Add(CEKFeats.PaleicianPositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.RepublicPositiveFeatFour))
-        securityChange.Add(CEKFeats.RepublicPositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.ApolssalianNegativeFeatOne) && town.Culture != town.OwnerClan.Culture)
-        securityChange.Add(CEKFeats.ApolssalianNegativeFeatOne.EffectBonus, GameTexts.FindText("str_culture"));
-      return securityChange;
+        public override ExplainedNumber CalculateSecurityChange(Town town, bool includeDescriptions = false)
+        {
+            ExplainedNumber securityChange = base.CalculateSecurityChange(town, includeDescriptions);
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.EmpirePositiveFeatFour))
+            {
+                securityChange.Add(CEKFeats.EmpirePositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.VagirPositiveFeatOne))
+            {
+                securityChange.Add(CEKFeats.VagirPositiveFeatOne.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.KhuzaitNegativeFeatTwo))
+            {
+                securityChange.Add(CEKFeats.KhuzaitNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.LyrionNegativeFeatTwo))
+            {
+                securityChange.Add(CEKFeats.LyrionNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.PaleicianPositiveFeatFour))
+            {
+                securityChange.Add(CEKFeats.PaleicianPositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.RepublicPositiveFeatFour))
+            {
+                securityChange.Add(CEKFeats.RepublicPositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.ApolssalianNegativeFeatOne) && town.Culture != town.OwnerClan.Culture)
+            {
+                securityChange.Add(CEKFeats.ApolssalianNegativeFeatOne.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            return securityChange;
+        }
     }
-  }
 }

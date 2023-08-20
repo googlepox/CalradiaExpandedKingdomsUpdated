@@ -11,9 +11,12 @@ using TaleWorlds.ObjectSystem;
 
 namespace CalradiaExpandedKingdoms.Patches
 {
-  [HarmonyPatch(typeof (Campaign), "OnRegisterTypes")]
-  public class CEKRegisterTypes
-  {
-    private static void Postfix(MBObjectManager objectManager) => objectManager.RegisterType<Ruin>("Ruin", "Components", 100U);
-  }
+    [HarmonyPatch(typeof(Campaign), "OnRegisterTypes")]
+    public class CEKRegisterTypes
+    {
+        private static void Postfix(MBObjectManager objectManager)
+        {
+            objectManager.RegisterType<Ruin>("Ruin", "Components", 100U);
+        }
+    }
 }

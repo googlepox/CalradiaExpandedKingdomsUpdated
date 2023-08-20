@@ -12,17 +12,20 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKPartySizeLimitModel : DefaultPartySizeLimitModel
-  {
-    public override ExplainedNumber GetPartyMemberSizeLimit(
-      PartyBase party,
-      bool includeDescriptions = false)
+    public class CEKPartySizeLimitModel : DefaultPartySizeLimitModel
     {
-      ExplainedNumber partyMemberSizeLimit = base.GetPartyMemberSizeLimit(party, includeDescriptions);
-      if (party.MobileParty == null || !party.IsMobile || party.MobileParty.IsGarrison || party.MobileParty.LeaderHero == null || !party.MobileParty.LeaderHero.Culture.HasFeat(CEKFeats.ApolssalianPositiveFeatFour))
-        return partyMemberSizeLimit;
-      partyMemberSizeLimit.Add(CEKFeats.ApolssalianPositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
-      return partyMemberSizeLimit;
+        public override ExplainedNumber GetPartyMemberSizeLimit(
+          PartyBase party,
+          bool includeDescriptions = false)
+        {
+            ExplainedNumber partyMemberSizeLimit = base.GetPartyMemberSizeLimit(party, includeDescriptions);
+            if (party.MobileParty == null || !party.IsMobile || party.MobileParty.IsGarrison || party.MobileParty.LeaderHero == null || !party.MobileParty.LeaderHero.Culture.HasFeat(CEKFeats.ApolssalianPositiveFeatFour))
+            {
+                return partyMemberSizeLimit;
+            }
+
+            partyMemberSizeLimit.Add(CEKFeats.ApolssalianPositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
+            return partyMemberSizeLimit;
+        }
     }
-  }
 }

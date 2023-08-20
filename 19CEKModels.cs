@@ -11,14 +11,17 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKVillageProductionModel : DefaultVillageProductionCalculatorModel
-  {
-    public override float CalculateDailyProductionAmount(Village village, ItemObject item)
+    public class CEKVillageProductionModel : DefaultVillageProductionCalculatorModel
     {
-      float productionAmount = base.CalculateDailyProductionAmount(village, item);
-      if (village.Settlement.Culture.HasFeat(CEKFeats.AriorumPositiveTwo) && village.Settlement.Owner != null && village.Settlement.Owner.Culture.HasFeat(CEKFeats.AriorumPositiveTwo))
-        productionAmount *= 1.15f;
-      return productionAmount;
+        public override float CalculateDailyProductionAmount(Village village, ItemObject item)
+        {
+            float productionAmount = base.CalculateDailyProductionAmount(village, item);
+            if (village.Settlement.Culture.HasFeat(CEKFeats.AriorumPositiveTwo) && village.Settlement.Owner != null && village.Settlement.Owner.Culture.HasFeat(CEKFeats.AriorumPositiveTwo))
+            {
+                productionAmount *= 1.15f;
+            }
+
+            return productionAmount;
+        }
     }
-  }
 }

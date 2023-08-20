@@ -11,16 +11,19 @@ using TaleWorlds.CampaignSystem.CampaignBehaviors;
 
 namespace CalradiaExpandedKingdoms.Fixes
 {
-  [HarmonyPatch(typeof (AgingCampaignBehavior), "OnHeroComesOfAge")]
-  internal class OnHeroComesOfAgePatch
-  {
-    public static bool Prefix(Hero hero)
+    [HarmonyPatch(typeof(AgingCampaignBehavior), "OnHeroComesOfAge")]
+    internal class OnHeroComesOfAgePatch
     {
-      if (!(hero.StringId == "lord_manhunters_1"))
-        return true;
-      EquipmentHelper.AssignHeroEquipmentFromEquipment(hero, hero.BattleEquipment);
-      EquipmentHelper.AssignHeroEquipmentFromEquipment(hero, hero.CivilianEquipment);
-      return false;
+        public static bool Prefix(Hero hero)
+        {
+            if (!(hero.StringId == "lord_manhunters_1"))
+            {
+                return true;
+            }
+
+            EquipmentHelper.AssignHeroEquipmentFromEquipment(hero, hero.BattleEquipment);
+            EquipmentHelper.AssignHeroEquipmentFromEquipment(hero, hero.CivilianEquipment);
+            return false;
+        }
     }
-  }
 }

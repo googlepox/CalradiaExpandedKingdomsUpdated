@@ -9,18 +9,21 @@ using TaleWorlds.ObjectSystem;
 
 namespace CalradiaExpandedKingdoms.Patches
 {
-  [HarmonyPatch(typeof (MBObjectManager), "GetMergedXmlForManaged")]
-  internal class GetMergedXmlForManagedPath
-  {
-    public static bool Prefix(
-      string id,
-      ref bool skipValidation,
-      bool ignoreGameTypeInclusionCheck = true,
-      string gameType = "")
+    [HarmonyPatch(typeof(MBObjectManager), "GetMergedXmlForManaged")]
+    internal class GetMergedXmlForManagedPath
     {
-      if (id == "Settlements")
-        skipValidation = true;
-      return true;
+        public static bool Prefix(
+          string id,
+          ref bool skipValidation,
+          bool ignoreGameTypeInclusionCheck = true,
+          string gameType = "")
+        {
+            if (id == "Settlements")
+            {
+                skipValidation = true;
+            }
+
+            return true;
+        }
     }
-  }
 }

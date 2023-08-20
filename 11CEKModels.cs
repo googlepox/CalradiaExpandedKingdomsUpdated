@@ -12,26 +12,47 @@ using TaleWorlds.Core;
 
 namespace CalradiaExpandedKingdoms.Models
 {
-  public class CEKSettlementTaxModel : DefaultSettlementTaxModel
-  {
-    public override ExplainedNumber CalculateTownTax(Town town, bool includeDescriptions = false)
+    public class CEKSettlementTaxModel : DefaultSettlementTaxModel
     {
-      ExplainedNumber townTax = base.CalculateTownTax(town, includeDescriptions);
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.NordlingNegativeFeatTwo))
-        townTax.AddFactor(CEKFeats.NordlingNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.KhergitNegativeFeatTwo))
-        townTax.AddFactor(CEKFeats.KhergitNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.SturgiaPositiveFeatFour))
-        townTax.AddFactor(CEKFeats.SturgiaPositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.VagirPositiveFeatFour))
-        townTax.AddFactor(CEKFeats.VagirPositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.ApolssalianPositiveFeatTwo))
-        townTax.AddFactor(CEKFeats.ApolssalianPositiveFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.LyrionPositiveFeatThree))
-        townTax.AddFactor(CEKFeats.LyrionPositiveFeatThree.EffectBonus, GameTexts.FindText("str_culture"));
-      if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.RhodokNegativeFeatOne))
-        townTax.AddFactor(CEKFeats.RhodokNegativeFeatOne.EffectBonus, GameTexts.FindText("str_culture"));
-      return townTax;
+        public override ExplainedNumber CalculateTownTax(Town town, bool includeDescriptions = false)
+        {
+            ExplainedNumber townTax = base.CalculateTownTax(town, includeDescriptions);
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.NordlingNegativeFeatTwo))
+            {
+                townTax.AddFactor(CEKFeats.NordlingNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.KhergitNegativeFeatTwo))
+            {
+                townTax.AddFactor(CEKFeats.KhergitNegativeFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.SturgiaPositiveFeatFour))
+            {
+                townTax.AddFactor(CEKFeats.SturgiaPositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.VagirPositiveFeatFour))
+            {
+                townTax.AddFactor(CEKFeats.VagirPositiveFeatFour.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.ApolssalianPositiveFeatTwo))
+            {
+                townTax.AddFactor(CEKFeats.ApolssalianPositiveFeatTwo.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.LyrionPositiveFeatThree))
+            {
+                townTax.AddFactor(CEKFeats.LyrionPositiveFeatThree.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            if (town.OwnerClan.Leader.Culture.HasFeat(CEKFeats.RhodokNegativeFeatOne))
+            {
+                townTax.AddFactor(CEKFeats.RhodokNegativeFeatOne.EffectBonus, GameTexts.FindText("str_culture"));
+            }
+
+            return townTax;
+        }
     }
-  }
 }

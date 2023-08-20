@@ -6,11 +6,11 @@
 
 namespace CalradiaExpandedKingdoms.Ruins
 {
-  public enum RuinType
-  {
-    Town,
-    Castle,
-    Village,
-    Misc,
-  }
+    public enum RuinType
+    {
+        Town,
+        Castle,
+        Village,
+        Misc,
+    }
 }
