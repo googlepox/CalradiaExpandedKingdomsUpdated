@@ -72,7 +72,10 @@ namespace CalradiaExpandedKingdoms.Patches
                     }
                 }
             }
-            __result = basicVolunteer;
+            if (__result != sellerHero.Culture.EliteBasicTroop)
+            {
+                __result = basicVolunteer;
+            }
         }
     }
 }
